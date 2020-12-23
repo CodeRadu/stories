@@ -24,7 +24,7 @@ Go to https://www.mongodb.com/2 and create an account
 Create a cluster and a user
 Make sure you added your server's ip address to the whitelist
 Click connect and connect your application and copy the connection token
-You should find a "<password>" tag. Change it to the user's password
+You should find a "password" tag. Change it to the user's password
 ### `Running`
 For dev mode run "npm run dev"
 For production mode run "npm start"
