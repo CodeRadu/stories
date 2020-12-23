@@ -20,7 +20,7 @@ Enable google+ api
 Setup Oauth consent screen
 Setup oauth client id in credentials
 ### `MongoDB setup`
-Go to https://www.mongodb.com/2 and create ann account
+Go to https://www.mongodb.com/2 and create an account
 Create a cluster and a user
 Make sure you added your server's ip address to the whitelist
 Click connect and connect your application and copy the connection token
