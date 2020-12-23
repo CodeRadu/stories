@@ -5,6 +5,9 @@ const Story=require('../models/Story')
 
 //Login/Landing page
 //@route GET /
+router.get('/:nfound', (req, res)=>{
+    res.render('error/404')
+})
 router.get('/', ensureGuest, (req, res)=>{
     if(req.protocol==="http"){
         res.redirect('https://server.venovedo.ro')
