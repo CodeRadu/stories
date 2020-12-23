@@ -31,8 +31,4 @@ router.get('/dashboard', ensureAuth, async (req, res)=>{
     }
 })
 
-router.get('/:nfound', (req, res)=>{
-    res.render('error/404')
-})
-
 module.exports=router
