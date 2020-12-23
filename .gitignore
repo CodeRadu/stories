@@ -3,3 +3,4 @@ config/config.env
 certificate.crt
 private.key
 update.sh
+upload.sh

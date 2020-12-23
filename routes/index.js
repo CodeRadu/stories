@@ -9,6 +9,9 @@ router.get('/', ensureGuest, (req, res)=>{
     if(req.protocol==="http" && req.query.fHttp!="true"){
         res.redirect('https://server.venovedo.ro')
     }
+    else if(req.query.fHttp=="true" && req.protocol==="https"){
+        res.redirect('http://server.venovedo.ro/?fHttp=true')
+    }
     else{
         res.render('login', {
             layout: 'login'
