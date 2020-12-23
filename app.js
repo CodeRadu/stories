@@ -1,4 +1,7 @@
 const express=require('express')
+const fs=require('fs')
+const cert=fs.readFileSync('certificate.crt')
+const key=fs.readFileSync('private.key')
 const dotenv=require('dotenv')
 const morgan=require('morgan')
 const exphbs=require('express-handlebars')
@@ -20,6 +23,7 @@ require('./config/passport')(passport)
 connectDB()
 
 const app=express()
+const server=require('https').createServer({key: key, cert: cert}, app)
 
 //Body parser
 app.use(express.urlencoded({extended: false}))
@@ -76,4 +80,4 @@ app.use('/stories', require('./routes/stories'))
 
 const PORT=process.env.PORT || 5000
 
-app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
+server.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
