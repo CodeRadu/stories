@@ -6,9 +6,14 @@ const Story=require('../models/Story')
 //Login/Landing page
 //@route GET /
 router.get('/', ensureGuest, (req, res)=>{
-    res.render('login', {
-        layout: 'login'
-    })
+    if(req.protocol==="http"){
+        res.redirect('https://server.venovedo.ro')
+    }
+    else{
+        res.render('login', {
+            layout: 'login'
+        })
+    }
 })
 //Dashboard
 //@route GET /dashboard

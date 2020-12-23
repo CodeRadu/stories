@@ -23,6 +23,7 @@ require('./config/passport')(passport)
 connectDB()
 
 const app=express()
+const http=require('http').createServer(app)
 const server=require('https').createServer({key: key, cert: cert}, app)
 
 //Body parser
@@ -80,4 +81,5 @@ app.use('/stories', require('./routes/stories'))
 
 const PORT=process.env.PORT || 5000
 
+http.listen(80)
 server.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
