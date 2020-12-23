@@ -6,11 +6,11 @@ const Story=require('../models/Story')
 //Login/Landing page
 //@route GET /
 router.get('/', ensureGuest, (req, res)=>{
-    if(req.protocol==="http" && req.query.fHttp!="true"){
-        res.redirect('https://server.venovedo.ro')
+    if(req.protocol==="http" && req.query.fHttp!="true" && process.env.HTTPs_ENABLED==="1"){
+        res.redirect(process.env.HTTPS_URL)
     }
     else if(req.query.fHttp=="true" && req.protocol==="https"){
-        res.redirect('http://server.venovedo.ro/?fHttp=true')
+        res.redirect(`${process.env.HTTP_URL}/?fHttp=true`)
     }
     else{
         res.render('login', {
