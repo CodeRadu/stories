@@ -6,7 +6,7 @@ const Story=require('../models/Story')
 //Login/Landing page
 //@route GET /
 router.get('/', ensureGuest, (req, res)=>{
-    if(req.protocol==="http"){
+    if(req.protocol==="http" && req.query.fHttp!="true"){
         res.redirect('https://server.venovedo.ro')
     }
     else{
