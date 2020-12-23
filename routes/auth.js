@@ -15,7 +15,12 @@ router.get('/google/callback', passport.authenticate('google', {failureRedirect:
 //@route GET /auth/logout
 router.get('/logout', (req, res)=>{
     req.logout()
-    res.redirect('/')
+    if(req.protocol==="http"){
+        res.redirect('http://server.venovedo.ro/?fHttp=true')
+    }
+    else {
+        res.redirect('https://server.venovedo.ro')
+    }
 })
 
 
