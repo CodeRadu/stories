@@ -79,7 +79,7 @@ app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/stories', require('./routes/stories'))
 
-router.get('/:nfound', (req, res)=>{
+app.get('/:nfound', (req, res)=>{
     res.render('error/404')
 })
 
