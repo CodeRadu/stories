@@ -98,6 +98,6 @@ app.use((req, res, next)=>{
 const PORT=process.env.PORT || 5000
 
 http.listen(80, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.HTTP}`))
-if(process.env.HTTPS_ENABLED==="1" && https){
+if(process.env.HTTPS_ENABLED==="1"){
     server.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
 }
