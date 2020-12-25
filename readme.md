@@ -1,8 +1,8 @@
 ### `Cloning`
 To clone the repository run "git clone https://github.com/papucicumuci/stories.git"
 ### `Setting up`
-Run "npm i"
-In the cnfig folder create a config.env file
+Run "npm i".
+In the config folder create a config.env file
 copy this model:
 PORT=443
 HTTP=80
