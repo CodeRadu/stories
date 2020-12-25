@@ -9,6 +9,9 @@ router.get('/', ensureGuest, (req, res)=>{
     if(req.protocol==="http" && req.query.fHttp!="true" && process.env.HTTPS_ENABLED==="1"){
         res.redirect(process.env.HTTPS_URL)
     }
+    else if(req.query.fHttp=="true" && process.env.HTTPS_ENABLED!=="1"){
+        res.redirect(`${process.env.HTTP_URL}`)
+    }
     else if(req.query.fHttp=="true" && req.protocol==="https"){
         res.redirect(`${process.env.HTTP_URL}/?fHttp=true`)
     }

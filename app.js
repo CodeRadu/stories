@@ -1,7 +1,5 @@
 const express=require('express')
 const fs=require('fs')
-const cert=fs.readFileSync('certificate.crt')
-const key=fs.readFileSync('private.key')
 const dotenv=require('dotenv')
 const morgan=require('morgan')
 const exphbs=require('express-handlebars')
@@ -12,6 +10,7 @@ const passport=require('passport')
 const mongoose=require('mongoose')
 const MongoStore=require('connect-mongo')(session)
 const methodOverride=require('method-override')
+let https=true
 
 //Load config
 dotenv.config({path: './config/config.env'})
@@ -21,10 +20,23 @@ dotenv.config({path: './config/config.env'})
 require('./config/passport')(passport)
 
 connectDB()
-
+//Creating Http server
+let server
 const app=express()
 const http=require('http').createServer(app)
-const server=require('https').createServer({key: key, cert: cert}, app)
+
+//Load certificate and private key
+if(process.env.HTTPS_ENABLED==="1"){
+    try {
+        const key=fs.readFileSync('private.key')
+        const cert=fs.readFileSync('certificate.crt')
+        //Creating Https server
+        server=require('https').createServer({key: key, cert: cert}, app)
+    } catch (err) {
+        console.error("Can\'t find certicifate files")
+        process.exit(1)
+    }
+}
 
 //Body parser
 app.use(express.urlencoded({extended: false}))
@@ -86,6 +98,6 @@ app.get('/:nfound', (req, res)=>{
 const PORT=process.env.PORT || 5000
 
 http.listen(80, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.HTTP}`))
-if(process.env.HTTPS_ENABLED==="1"){
+if(process.env.HTTPS_ENABLED==="1" && https){
     server.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
 }
